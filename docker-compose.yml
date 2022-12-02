@@ -1,0 +1,23 @@
+
+services:
+  webserver:
+    build:
+      context: ./docker/appreceipt
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/app
+    container_name: youtube-my-list
+    links:
+      - db
+  db:
+    image: mariadb:10.7
+    ports:
+      - 3306:3306
+    container_name: youtube-my-list-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ymlist
+      MYSQL_USER: ymlist
+      MYSQL_PASSWORD: ymlist
+      MYSQL_DATABASE: ymlist
+  
